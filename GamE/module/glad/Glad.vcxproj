@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5FA9857C-4BE0-860D-F4CC-6C10E0E2020F}</ProjectGuid>
+    <ProjectGuid>{DD62977C-C999-980D-7286-7E105E9C140F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GamE</RootNamespace>
+    <RootNamespace>glad</RootNamespace>
     <LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
     <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -42,28 +42,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\bin\windows-x86_64-Debug\GamE\</OutDir>
-    <IntDir>..\bin-tmp\windows-x86_64-Debug\GamE\</IntDir>
-    <TargetName>GamE</TargetName>
+    <OutDir>bin\windows-x86_64-Debug\glad\</OutDir>
+    <IntDir>bin-tmp\windows-x86_64-Debug\glad\</IntDir>
+    <TargetName>glad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\bin\windows-x86_64-Release\GamE\</OutDir>
-    <IntDir>..\bin-tmp\windows-x86_64-Release\GamE\</IntDir>
-    <TargetName>GamE</TargetName>
+    <OutDir>bin\windows-x86_64-Release\glad\</OutDir>
+    <IntDir>bin-tmp\windows-x86_64-Release\glad\</IntDir>
+    <TargetName>glad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_LOG;GE_WINDOWS;GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>module\spdlog\include;module\glfw\include;module\glad\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,18 +69,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_LOG;GE_WINDOWS;GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>module\spdlog\include;module\glfw\include;module\glad\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/MT %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,40 +87,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\Application.h" />
-    <ClInclude Include="src\Core\EntryPoint.h" />
-    <ClInclude Include="src\Core\Events\AppEvent.h" />
-    <ClInclude Include="src\Core\Events\Event.h" />
-    <ClInclude Include="src\Core\Events\KeyEvent.h" />
-    <ClInclude Include="src\Core\Events\MouseEvent.h" />
-    <ClInclude Include="src\Core\Layers\Layer.h" />
-    <ClInclude Include="src\Core\Layers\LayerStack.h" />
-    <ClInclude Include="src\Core\Window\Lin\Lin_Window.h" />
-    <ClInclude Include="src\Core\Window\Win\Win_Window.h" />
-    <ClInclude Include="src\Core\Window\Window.h" />
-    <ClInclude Include="src\GamE.h" />
-    <ClInclude Include="src\Log\Log.h" />
-    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="include\KHR\khrplatform.h" />
+    <ClInclude Include="include\glad\glad.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Application.cpp" />
-    <ClCompile Include="src\Core\Layers\Layer.cpp" />
-    <ClCompile Include="src\Core\Layers\LayerStack.cpp" />
-    <ClCompile Include="src\Core\Window\Lin\Lin_WIndow.cpp" />
-    <ClCompile Include="src\Core\Window\Win\Win_Window.cpp" />
-    <ClCompile Include="src\Core\Window\Window.cpp" />
-    <ClCompile Include="src\Log\Log.cpp" />
-    <ClCompile Include="src\pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="module\glfw\glfw.vcxproj">
-      <Project>{9563977C-819A-980D-2A87-7E10169D140F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="module\glad\glad.vcxproj">
-      <Project>{DD62977C-C999-980D-7286-7E105E9C140F}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\glad.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

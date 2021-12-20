@@ -9,9 +9,7 @@ int main()
 	GE::Log::init();
 
 	GE::Application* app = GE::create();
-
-	int a = 5;
-
+	app->run();
 
 	return 0;
 }

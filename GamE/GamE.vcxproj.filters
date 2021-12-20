@@ -4,6 +4,21 @@
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Events">
+      <UniqueIdentifier>{52201B74-BED5-9369-47CA-8D40B37E8A6D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Layers">
+      <UniqueIdentifier>{2D0BFE82-99C0-7678-22B5-704F8E696D7C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Window">
+      <UniqueIdentifier>{5581319D-C136-AA92-4A2B-A469B6DFA096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Window\Lin">
+      <UniqueIdentifier>{E73A27F2-53C6-94B6-5CD7-17ABC8E1F0B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Window\Win">
+      <UniqueIdentifier>{B26927F2-1EF5-94B6-2706-18AB9310F1B6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Log">
       <UniqueIdentifier>{E704880B-530E-887C-DC89-9E7C4892937C}</UniqueIdentifier>
     </Filter>
@@ -15,6 +30,33 @@
     <ClInclude Include="src\Core\EntryPoint.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\Events\AppEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Events\Event.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Events\KeyEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Events\MouseEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Layers\Layer.h">
+      <Filter>Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Layers\LayerStack.h">
+      <Filter>Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Window\Lin\Lin_Window.h">
+      <Filter>Core\Window\Lin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Window\Win\Win_Window.h">
+      <Filter>Core\Window\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Window\Window.h">
+      <Filter>Core\Window</Filter>
+    </ClInclude>
     <ClInclude Include="src\GamE.h" />
     <ClInclude Include="src\Log\Log.h">
       <Filter>Log</Filter>
@@ -24,6 +66,21 @@
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Layers\Layer.cpp">
+      <Filter>Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Layers\LayerStack.cpp">
+      <Filter>Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Window\Lin\Lin_WIndow.cpp">
+      <Filter>Core\Window\Lin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Window\Win\Win_Window.cpp">
+      <Filter>Core\Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Window\Window.cpp">
+      <Filter>Core\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\Log\Log.cpp">
       <Filter>Log</Filter>

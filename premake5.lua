@@ -10,6 +10,10 @@ outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 ---------------------------------------------
 
 -- include "**/premake5.lua"
+include "GamE/module/glfw"
+include "GamE/module/glad"
+
+---------------------------------------------
 
 project "GamE"
    location "GamE"
@@ -27,8 +31,15 @@ project "GamE"
    includedirs
    {
       "%{wks.location}/GamE/module/spdlog/include",
+      "%{wks.location}/GamE/module/glfw/include",
+      "%{wks.location}/GamE/module/glad/include",
       "%{prj.name}/src"
    }
+    links
+    {
+        "glfw",
+        "glad"
+    }
    defines { "GE_LOG" }
    pchheader "pch.h"
    pchsource "%{prj.name}/src/pch.cpp"
@@ -63,7 +74,6 @@ project "Sandbox"
    {
       "%{wks.location}/GamE/module/spdlog/include",
       "%{wks.location}/GamE/src",
-      "%{wks.location}/GamE/module"
    }
    links
    {
