@@ -26,9 +26,10 @@ project "GamE"
    }
    includedirs
    {
-      --"%{prj.name}/module/spdlog/include",
+      "%{wks.location}/GamE/module/spdlog/include",
       "%{prj.name}/src"
    }
+   defines { "GE_LOG" }
    pchheader "pch.h"
    pchsource "%{prj.name}/src/pch.cpp"
 

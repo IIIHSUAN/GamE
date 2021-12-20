@@ -7,7 +7,7 @@ namespace Sandbox {
 	class Application: public GE::Application
 	{
 	public:
-		Application() { std::cout << "Sandbox app init\n"; };
+		Application() { COUT_YEL("Sandbox Init"); };
 		~Application() {};
 	};
 

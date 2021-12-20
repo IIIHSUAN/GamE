@@ -2,13 +2,17 @@
 
 #ifdef GE_WINDOWS
 
-#include "Application.h"
-
 extern GE::Application* GE::create();
 
 int main()
 {
+	GE::Log::init();
+
 	GE::Application* app = GE::create();
+
+	int a = 5;
+
+
 	return 0;
 }
 
