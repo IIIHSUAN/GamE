@@ -1,3 +1,6 @@
 [submodule "GamE/module/spdlog"]
 	path = GamE/module/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "GamE/module/glfw"]
+	path = GamE/module/glfw
+	url = https://github.com/glfw/glfw.git
