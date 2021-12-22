@@ -5,7 +5,6 @@ namespace GE {
 
 	LayerStack::LayerStack()
 	{
-		_mid_ptr = _layers.begin();
 	}
 	LayerStack::~LayerStack()
 	{
@@ -14,11 +13,11 @@ namespace GE {
 			delete layer;
 	}
 
-	void LayerStack::push_front(Layer * layer)
+	void LayerStack::insert_front(Layer * layer)
 	{
-		_mid_ptr = _layers.emplace(_mid_ptr, layer);
+		_layers.emplace(_layers.begin()+ (_layers_midInd++), layer);
 	}
-	void LayerStack::push_back(Layer * layer)
+	void LayerStack::insert_back(Layer * layer)
 	{
 		_layers.emplace_back(layer);
 	}
@@ -28,7 +27,7 @@ namespace GE {
 		auto it = std::find(_layers.begin(), _layers.end(), layer);
 
 		if (it != _layers.end())
-			_layers.erase(it), _mid_ptr--;
+			_layers.erase(it), _layers_midInd--;
 	}
 	void LayerStack::pop_back(Layer * layer)
 	{

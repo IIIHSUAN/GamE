@@ -3,13 +3,15 @@
 #include "pch.h"
 #include "Win_Window.h"
 
+#include <GLFW/glfw3.h>
+
 namespace GE {
 
 	static bool _isGLFWInit = false;
 
 	static void _gLFWErrorCallback(int opcode, const char* discription)
 	{
-		COUT_RED("GLFW ERR Callback: ({0}) {1}",opcode,discription);
+		COUT_RED("GLFW ERR Callback: ({0}) {1}", opcode, discription);
 	}
 
 	Win_Window::Win_Window(const WindowProperties& props)
@@ -25,27 +27,25 @@ namespace GE {
 		_winWindowData.title = props.title;
 		_winWindowData.width = props.width;
 		_winWindowData.height = props.height;
-		COUT_YEL("Create Win window {0} ({1},{2})", props.title, props.width, props.height);
+		COUT_YEL("Create Win window \"{0}\" ({1},{2})", props.title, props.width, props.height);
 		
+
 		if (!_isGLFWInit)
 		{
 			// glfwTerminate on sys shut down 
 			int opcode = glfwInit();
-			if (!opcode)
-				COUT_RED("failed to init GLFW");
+			COUT_ASSERT(opcode, "failed to init GLFW");
 
 			_isGLFWInit = true;
 		}
 
 		_gLFWwindow = glfwCreateWindow((int)props.width, (int)props.height, _winWindowData.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(_gLFWwindow);
+		
+		_context = new GLContext(_gLFWwindow);
+		_context->init();
+
 		glfwSetWindowUserPointer(_gLFWwindow, &_winWindowData);
 		setVSync(true);
-
-		int opcode = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		if(!opcode)
-			COUT_RED("failed to init Glad");
-
 
 		// Win_Windows sets GLFW callbacks
 		glfwSetWindowSizeCallback(_gLFWwindow, [](GLFWwindow* gLFWwindow, int width, int height) {
@@ -125,7 +125,8 @@ namespace GE {
 	void Win_Window::onUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(_gLFWwindow);
+
+		_context->swapBuffer();
 	}
 	void Win_Window::setVSync(bool isEnable)
 	{

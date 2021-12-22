@@ -13,7 +13,7 @@ namespace GE {
 		virtual void onAttach() {}
 		virtual void onDetach() {}
 		virtual void onUpdate() {}
-		virtual void onEvent(Event& e) {}
+		virtual void onEvent(Event& e) { COUT_GRE("[{0}] {1}", _layerName, e.toString()); }
 
 		inline const std::string& getName() const { return _layerName; }
 	private:

@@ -62,6 +62,13 @@
       <Filter>Log</Filter>
     </ClInclude>
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Core\Renderer\OpenGL\GLContext.h" />
+    <ClInclude Include="src\Core\Renderer\RendererContext.h" />
+    <ClInclude Include="src\Core\Shader\Shader.h" />
+    <ClInclude Include="src\Core\Shader\OpenGL\GLShader.h" />
+    <ClInclude Include="src\Core\GraphicsData\OpenGL\GLBuffer.h" />
+    <ClInclude Include="src\Core\GraphicsData\Buffer.h" />
+    <ClInclude Include="src\Core\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -86,5 +93,10 @@
       <Filter>Log</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Core\Renderer\OpenGL\GLContext.cpp" />
+    <ClCompile Include="src\Core\Shader\OpenGL\GLShader.cpp" />
+    <ClCompile Include="src\Core\GraphicsData\OpenGL\GLBuffer.cpp" />
+    <ClCompile Include="src\Core\GraphicsData\Buffer.cpp" />
+    <ClCompile Include="src\Core\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

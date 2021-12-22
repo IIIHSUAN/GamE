@@ -6,6 +6,8 @@
 #include "Core/Events/KeyEvent.h"
 #include "Core/Events/MouseEvent.h"
 
+#include "Core/Renderer/RendererContext.h"
+
 namespace GE {
 
 	struct WindowProperties
@@ -24,6 +26,7 @@ namespace GE {
 	class Window
 	{
 	public:
+		Window() = default;
 		virtual ~Window() = default;
 		
 		static Window* create(const WindowProperties& prop = WindowProperties());

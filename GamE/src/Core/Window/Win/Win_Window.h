@@ -1,9 +1,7 @@
 #pragma once
 
 #include "../Window.h"
-
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
+#include "Core/Renderer/OpenGL/GLContext.h"
 
 namespace GE {
 
@@ -29,6 +27,7 @@ namespace GE {
 		virtual void shutdown();
 	private:
 		GLFWwindow* _gLFWwindow;
+		GLContext* _context;
 
 		struct WinWindowData
 		{
