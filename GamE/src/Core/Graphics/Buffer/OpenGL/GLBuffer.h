@@ -40,13 +40,16 @@ namespace GE {
 	{
 	public:
 		GLVertexArr();
-		virtual ~GLVertexArr() {};
+		virtual ~GLVertexArr();
 
 		virtual void bind() const override;
 		virtual void unbind() const override;
 
 		virtual void addVertex(const std::shared_ptr<VertexBuf>& vertexBuf) override;
 		virtual void setIndex(const std::shared_ptr<IndexBuf>& indexBuf) override;
+
+		virtual const std::vector<std::shared_ptr<VertexBuf>>& getVertexBufVec() const override { return _vertexBuf_vec; }
+		virtual const std::shared_ptr<IndexBuf >& getIndexBuf() const override { return _indexBuf; }
 	private:
 		std::vector<std::shared_ptr<VertexBuf>> _vertexBuf_vec;
 		std::shared_ptr<IndexBuf> _indexBuf;

@@ -29,10 +29,11 @@ namespace GE {
 		bool _isRun = true;
 		LayerStack _layerStack;
 
+		// can have many
 		std::shared_ptr<Shader> _shader;
 		std::shared_ptr<VertexArr> _vertexArr;
-		std::shared_ptr<VertexBuf> _vertexBuf;
-		std::shared_ptr<IndexBuf> _indexBuf;
+		//std::shared_ptr<VertexBuf> _vertexBuf;
+		//std::shared_ptr<IndexBuf> _indexBuf;
 	};
 
 	// define by client & return new Application()

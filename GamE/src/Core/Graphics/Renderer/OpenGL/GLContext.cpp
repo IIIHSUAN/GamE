@@ -13,9 +13,10 @@ namespace GE {
 		int opcode = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		COUT_ASSERT(opcode, "failed to init Glad");
 
-		COUT_YEL("GLContext Vendor: [{0}]", glGetString(GL_VENDOR));
-		COUT_YEL("          Renderer: [{0}]", glGetString(GL_RENDERER));
-		COUT_YEL("          Version: [{0}]", glGetString(GL_VERSION));
+		COUT_YEL("|  [GLContext]");
+		COUT_YEL("|--Vendor: [{0}]", glGetString(GL_VENDOR));
+		COUT_YEL("|--Renderer: [{0}]", glGetString(GL_RENDERER));
+		COUT_YEL("|--Version: [{0}]\n", glGetString(GL_VERSION));
 	}
 
 	void GLContext::swapBuffer()

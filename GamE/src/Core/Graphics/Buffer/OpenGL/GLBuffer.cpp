@@ -77,6 +77,10 @@ namespace GE {
 	{
 		glCreateVertexArrays(1, &_vertexArr);
 	}
+	GLVertexArr::~GLVertexArr()
+	{
+		glDeleteVertexArrays(1, &_vertexArr);
+	}
 	void GLVertexArr::bind() const
 	{
 		glBindVertexArray(_vertexArr);

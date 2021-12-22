@@ -23,9 +23,13 @@ namespace GE {
 			/*   (Float3)pos          (Float4)color   */ 
 			-0.1f, -0.1f, 0.0f,		0.8f,0.1f,0.6f,1.0f,
 			0.0f, 0.0f, 0.0f,		0.8f,0.4f,0.3f,1.0f,
-			-0.1f, 0.1f ,0.0f,		0.9f,0.4f,0.5f,1.0f
+			-0.1f, 0.1f ,0.0f,		0.9f,0.4f,0.5f,1.0f,
+			0.1f, -0.1f, 0.0f,		0.8f,0.1f,0.6f,1.0f,
+			0.5f, 0.1f, 0.0f,		0.8f,0.4f,0.3f,1.0f,
+			-0.5f, 0.1f ,0.9f,		0.9f,0.4f,0.5f,1.0f
 		};
 
+		std::shared_ptr<VertexBuf>_vertexBuf;
 		_vertexBuf.reset(VertexBuf::create(vertices, sizeof(vertices)));
 		_vertexBuf->setLayout({
 			{ DataType::Float3, "pos" },
@@ -34,7 +38,8 @@ namespace GE {
 
 		_vertexArr->addVertex(_vertexBuf);
 
-		unsigned int indices[3]{ 1,2,0 };
+		std::shared_ptr<IndexBuf>_indexBuf;
+		unsigned int indices[]{ 1,2,0,3,4,5 };
 		_indexBuf.reset(IndexBuf::create(indices, sizeof(indices)/sizeof(uint32_t)));
 		_vertexArr->setIndex(_indexBuf);
 
@@ -66,7 +71,6 @@ namespace GE {
 				_color = o_color;
 			}
 		)";
-
 		_shader.reset(new GLShader(vertexSrc, fragmentSrc));
 	}
 
@@ -83,7 +87,7 @@ namespace GE {
 
 			_shader->bind();
 			_vertexArr->bind();
-			glDrawElements(GL_TRIANGLES, _indexBuf->getCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, _vertexArr->getIndexBuf()->getCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : _layerStack)
 				layer->onUpdate();

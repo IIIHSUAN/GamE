@@ -127,6 +127,9 @@ namespace GE {
 		virtual void addVertex(const std::shared_ptr<VertexBuf>& vertexBuf) = 0;
 		virtual void setIndex(const std::shared_ptr<IndexBuf>& indexBuf) = 0;
 
+		virtual const std::vector<std::shared_ptr<VertexBuf>>& getVertexBufVec() const = 0;
+		virtual const std::shared_ptr<IndexBuf >& getIndexBuf() const = 0;
+
 		static VertexArr* create();
 	};
 
