@@ -76,13 +76,16 @@ namespace GE {
 		inline const std::vector<Buf>& get() const { return _buf; }
 		inline const uint32_t& getStride() const { return _stride; }
 
-
 		std::vector<Buf>::iterator begin() { return _buf.begin(); }
 		std::vector<Buf>::iterator end() { return _buf.end(); }
+		std::vector<Buf>::const_iterator begin() const { return _buf.begin(); }
+		std::vector<Buf>::const_iterator end() const { return _buf.end(); }
 	private:
 		std::vector<Buf> _buf;
 		uint32_t _stride = 0;
 	};
+
+	/* Elements ***********************************************************/
 
 	class VertexBuf
 	{
@@ -94,7 +97,7 @@ namespace GE {
 
 		static VertexBuf* create(float* vertices, uint32_t size);
 
-		virtual const BufLayout& get() = 0;
+		virtual const BufLayout& getLayout() = 0;
 		virtual void setLayout(const BufLayout& layout) = 0;
 	};
 
@@ -110,4 +113,21 @@ namespace GE {
 
 		static IndexBuf* create(uint32_t* vertices, uint32_t count);
 	};
+
+	/* OpenGL only *************************************/
+
+	class VertexArr
+	{
+	public:
+		virtual ~VertexArr() {}
+
+		virtual void bind() const = 0;
+		virtual void unbind() const = 0;
+
+		virtual void addVertex(const std::shared_ptr<VertexBuf>& vertexBuf) = 0;
+		virtual void setIndex(const std::shared_ptr<IndexBuf>& indexBuf) = 0;
+
+		static VertexArr* create();
+	};
+
 }

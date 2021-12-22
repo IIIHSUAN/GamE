@@ -6,7 +6,7 @@
 #include "Core/Events/KeyEvent.h"
 #include "Core/Events/MouseEvent.h"
 
-#include "Core/Renderer/RendererContext.h"
+#include "Core/Graphics/Renderer/RendererContext.h"
 
 namespace GE {
 

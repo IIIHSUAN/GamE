@@ -7,29 +7,6 @@
 
 namespace GE {
 
-	static GLenum DataType_to_GLType(DataType type)
-	{
-		switch (type)
-		{
-		case GE::DataType::Float:
-		case GE::DataType::Float2:
-		case GE::DataType::Float3:
-		case GE::DataType::Float4:
-		case GE::DataType::Matrix3:
-		case GE::DataType::Matrix4:
-			return GL_FLOAT;
-		case GE::DataType::Int:
-		case GE::DataType::Int2:
-		case GE::DataType::Int3:
-		case GE::DataType::Int4:
-			return GL_INT;
-		case GE::DataType::Bool:
-			return GL_BOOL;
-		default:
-			return 0;
-		}
-	}
-
 	Application::Application()
 	{
 		_window = std::unique_ptr<Window>(Window::create());
@@ -40,8 +17,7 @@ namespace GE {
 		insert_back(new Layer("Layer0"));
 		insert_front(new Layer("Layer99"));
 
-		glGenVertexArrays(1, &_vertexArr);
-		glBindVertexArray(_vertexArr);
+		_vertexArr.reset(VertexArr::create());
 
 		float vertices[] {
 			/*   (Float3)pos          (Float4)color   */ 
@@ -51,22 +27,16 @@ namespace GE {
 		};
 
 		_vertexBuf.reset(VertexBuf::create(vertices, sizeof(vertices)));
+		_vertexBuf->setLayout({
+			{ DataType::Float3, "pos" },
+			{ DataType::Float4, "color" }
+		});
 
-		BufLayout _layout = {
-			{ DataType::Float3, "_pos" },
-			{ DataType::Float4, "_color" }
-		};
-
-		uint32_t ind = 0;
-		for (const auto& buf : _layout)  // every row
-		{
-			glEnableVertexAttribArray(ind);
-			glVertexAttribPointer(ind, buf.count(), DataType_to_GLType(buf.type), buf.isNorm, _layout.getStride(), (const void*)buf.offset);
-			ind++;
-		}
+		_vertexArr->addVertex(_vertexBuf);
 
 		unsigned int indices[3]{ 1,2,0 };
 		_indexBuf.reset(IndexBuf::create(indices, sizeof(indices)/sizeof(uint32_t)));
+		_vertexArr->setIndex(_indexBuf);
 
 		std::string vertexSrc =	R"(
 			#version 330 core
@@ -112,7 +82,7 @@ namespace GE {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			_shader->bind();
-			glBindVertexArray(_vertexArr);
+			_vertexArr->bind();
 			glDrawElements(GL_TRIANGLES, _indexBuf->getCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : _layerStack)

@@ -62,13 +62,13 @@
       <Filter>Log</Filter>
     </ClInclude>
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\Core\Renderer\OpenGL\GLContext.h" />
-    <ClInclude Include="src\Core\Renderer\RendererContext.h" />
-    <ClInclude Include="src\Core\Shader\Shader.h" />
-    <ClInclude Include="src\Core\Shader\OpenGL\GLShader.h" />
-    <ClInclude Include="src\Core\GraphicsData\OpenGL\GLBuffer.h" />
-    <ClInclude Include="src\Core\GraphicsData\Buffer.h" />
-    <ClInclude Include="src\Core\Renderer\Renderer.h" />
+    <ClInclude Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.h" />
+    <ClInclude Include="src\Core\Graphics\Buffer\Buffer.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\OpenGL\GLContext.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\Renderer.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\RendererContext.h" />
+    <ClInclude Include="src\Core\Graphics\Shader\OpenGL\GLShader.h" />
+    <ClInclude Include="src\Core\Graphics\Shader\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -93,10 +93,10 @@
       <Filter>Log</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Core\Renderer\OpenGL\GLContext.cpp" />
-    <ClCompile Include="src\Core\Shader\OpenGL\GLShader.cpp" />
-    <ClCompile Include="src\Core\GraphicsData\OpenGL\GLBuffer.cpp" />
-    <ClCompile Include="src\Core\GraphicsData\Buffer.cpp" />
-    <ClCompile Include="src\Core\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Buffer\Buffer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Renderer\OpenGL\GLContext.cpp" />
+    <ClCompile Include="src\Core\Graphics\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Shader\OpenGL\GLShader.cpp" />
   </ItemGroup>
 </Project>

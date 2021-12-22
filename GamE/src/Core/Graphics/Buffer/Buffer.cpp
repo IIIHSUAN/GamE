@@ -3,7 +3,7 @@
 
 #include "../Renderer/Renderer.h"
 
-#include "../GraphicsData/OpenGL/GLBuffer.h"
+#include "OpenGL/GLBuffer.h"
 
 namespace GE {
 
@@ -30,6 +30,19 @@ namespace GE {
 			return nullptr;
 		case RendererAPI::OpenGL:
 			return new GLIndexBuf(vertices, count);
+		}
+	}
+
+	VertexArr * VertexArr::create()
+	{
+		switch (Renderer::getAPI())
+		{
+		case RendererAPI::None:
+		default:
+			COUT_ASSERT(0, "RendererAPI NULL for VertexBuf");
+			return nullptr;
+		case RendererAPI::OpenGL:
+			return new GLVertexArr();
 		}
 	}
 

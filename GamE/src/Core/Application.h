@@ -4,8 +4,8 @@
 #include "Core/Events/Event.h"
 #include "Core/Layers/LayerStack.h"
 
-#include "Core/Shader/OpenGL/GLShader.h"
-#include "Core/GraphicsData/Buffer.h"
+#include "Core/Graphics/Shader/OpenGL/GLShader.h"
+#include "Core/Graphics/Buffer/Buffer.h"
 
 namespace GE {
 
@@ -29,10 +29,10 @@ namespace GE {
 		bool _isRun = true;
 		LayerStack _layerStack;
 
-		std::unique_ptr<Shader> _shader;
-		std::unique_ptr<VertexBuf> _vertexBuf;
-		std::unique_ptr<IndexBuf> _indexBuf;
-		unsigned int _vertexArr;
+		std::shared_ptr<Shader> _shader;
+		std::shared_ptr<VertexArr> _vertexArr;
+		std::shared_ptr<VertexBuf> _vertexBuf;
+		std::shared_ptr<IndexBuf> _indexBuf;
 	};
 
 	// define by client & return new Application()

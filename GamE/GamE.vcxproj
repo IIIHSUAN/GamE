@@ -98,15 +98,15 @@
     <ClInclude Include="src\Core\Events\Event.h" />
     <ClInclude Include="src\Core\Events\KeyEvent.h" />
     <ClInclude Include="src\Core\Events\MouseEvent.h" />
-    <ClInclude Include="src\Core\GraphicsData\Buffer.h" />
-    <ClInclude Include="src\Core\GraphicsData\OpenGL\GLBuffer.h" />
+    <ClInclude Include="src\Core\Graphics\Buffer\Buffer.h" />
+    <ClInclude Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.h" />
     <ClInclude Include="src\Core\Layers\Layer.h" />
     <ClInclude Include="src\Core\Layers\LayerStack.h" />
-    <ClInclude Include="src\Core\Renderer\Renderer.h" />
-    <ClInclude Include="src\Core\Renderer\RendererContext.h" />
-    <ClInclude Include="src\Core\Renderer\OpenGL\GLContext.h" />
-    <ClInclude Include="src\Core\Shader\OpenGL\GLShader.h" />
-    <ClInclude Include="src\Core\Shader\Shader.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\Renderer.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\RendererContext.h" />
+    <ClInclude Include="src\Core\Graphics\Renderer\OpenGL\GLContext.h" />
+    <ClInclude Include="src\Core\Graphics\Shader\OpenGL\GLShader.h" />
+    <ClInclude Include="src\Core\Graphics\Shader\Shader.h" />
     <ClInclude Include="src\Core\Window\Lin\Lin_Window.h" />
     <ClInclude Include="src\Core\Window\Win\Win_Window.h" />
     <ClInclude Include="src\Core\Window\Window.h" />
@@ -116,13 +116,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp" />
-    <ClCompile Include="src\Core\GraphicsData\Buffer.cpp" />
-    <ClCompile Include="src\Core\GraphicsData\OpenGL\GLBuffer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Buffer\Buffer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.cpp" />
     <ClCompile Include="src\Core\Layers\Layer.cpp" />
     <ClCompile Include="src\Core\Layers\LayerStack.cpp" />
-    <ClCompile Include="src\Core\Renderer\OpenGL\GLContext.cpp" />
-    <ClCompile Include="src\Core\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Core\Shader\OpenGL\GLShader.cpp" />
+    <ClCompile Include="src\Core\Graphics\Renderer\OpenGL\GLContext.cpp" />
+    <ClCompile Include="src\Core\Graphics\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Shader\OpenGL\GLShader.cpp" />
     <ClCompile Include="src\Core\Window\Lin\Lin_WIndow.cpp" />
     <ClCompile Include="src\Core\Window\Win\Win_Window.cpp" />
     <ClCompile Include="src\Core\Window\Window.cpp" />

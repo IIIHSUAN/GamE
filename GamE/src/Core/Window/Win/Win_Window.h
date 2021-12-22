@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Window.h"
-#include "Core/Renderer/OpenGL/GLContext.h"
+#include "Core/Graphics/Renderer/OpenGL/GLContext.h"
 
 namespace GE {
 
