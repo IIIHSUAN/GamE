@@ -8,6 +8,8 @@ namespace GE {
 	}
 	void Renderer::submit(const std::shared_ptr<VertexArr>& vertexArr)
 	{
+		vertexArr->bind();
+		RenderInstruction::draw(vertexArr);
 	}
 	void Renderer::endDraw()
 	{

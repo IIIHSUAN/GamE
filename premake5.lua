@@ -9,7 +9,7 @@ outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 ---------------------------------------------
 
--- include "**/premake5.lua"
+-- include "**/premake5.lua" here, and links their lib
 include "GamE/module/glfw"
 include "GamE/module/glad"
 
@@ -26,27 +26,30 @@ project "GamE"
    files
    {
       "%{prj.name}/src/**.h",
-      "%{prj.name}/src/**.cpp"
+      "%{prj.name}/src/**.cpp",
+      "%{wks.location}/GamE/module/glm/glm/**.hpp",
+      "%{wks.location}/GamE/module/glm/glm/**.inl"
    }
    includedirs
    {
       "%{wks.location}/GamE/module/spdlog/include",
       "%{wks.location}/GamE/module/glfw/include",
       "%{wks.location}/GamE/module/glad/include",
+      "%{wks.location}/GamE/module/glm/",
       "%{prj.name}/src"
    }
-    links
-    {
-        "glfw",
-        "glad"
-    }
+   links
+   {
+    "glfw",
+    "glad"
+   }
    defines { "GE_LOG" }
    pchheader "pch.h"
    pchsource "%{prj.name}/src/pch.cpp"
 
    filter "system:windows"
-        systemversion "latest"
-        defines { "GE_WINDOWS" }
+      systemversion "latest"
+      defines { "GE_WINDOWS" }
 
    filter "configurations:Debug"
       defines { "GE_DEBUG" }
@@ -68,12 +71,15 @@ project "Sandbox"
    files
    {
       "%{prj.name}/src/**.h",
-      "%{prj.name}/src/**.cpp"
+      "%{prj.name}/src/**.cpp",
+      "%{wks.location}/GamE/module/glm/glm/**.hpp",
+      "%{wks.location}/GamE/module/glm/glm/**.inl"
    }
    includedirs
    {
       "%{wks.location}/GamE/module/spdlog/include",
       "%{wks.location}/GamE/src",
+      "%{wks.location}/GamE/module/glm/"
    }
    links
    {
@@ -81,8 +87,8 @@ project "Sandbox"
    }
 
    filter "system:windows"
-        systemversion "latest"
-        defines { "GE_WINDOWS" }
+      systemversion "latest"
+      defines { "GE_WINDOWS" }
    filter "configurations:Debug"
       defines { "GE_DEBUG" }
       runtime "Debug"

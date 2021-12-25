@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include "Core/Graphics/Renderer/Renderer.h"
+
 #define BIND_FUNC(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace GE {
@@ -19,6 +21,10 @@ namespace GE {
 
 		/////////////////////////////////////////////
 
+		RenderInstruction::init(RendererAPI::Type::OpenGL);
+
+		/////////////////////////////////////////////
+		
 		_vertexArr.reset(VertexArr::create());
 
 		float vertices[] {
@@ -40,7 +46,7 @@ namespace GE {
 		_vertexArr->addVertex(_vertexBuf);
 
 		std::shared_ptr<IndexBuf>_indexBuf;
-		unsigned int indices[]{ 1,2,0,3,4,5 };
+		unsigned int indices[]{ 1,2,0,1,5,0 };
 		_indexBuf.reset(IndexBuf::create(indices, sizeof(indices)/sizeof(uint32_t)));
 		_vertexArr->setIndex(_indexBuf);
 
@@ -131,16 +137,20 @@ namespace GE {
 		{
 			// first
 
-			glClearColor(0.15f, 0.15f, 0.15f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderInstruction::setBackgroundColor({ 0.15f,0.15f,0.15f,1 });
+			RenderInstruction::clear();
 
-			_shader2->bind();
-			_vertexArr2->bind();
-			glDrawElements(GL_TRIANGLES, _vertexArr2->getIndexBuf()->getCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::beginDraw();
 
-			_shader->bind();
-			_vertexArr->bind();
-			glDrawElements(GL_TRIANGLES, _vertexArr->getIndexBuf()->getCount(), GL_UNSIGNED_INT, nullptr);
+			{
+				_shader2->bind();
+				Renderer::submit(_vertexArr2);
+
+				_shader->bind();
+				Renderer::submit(_vertexArr);
+			}
+
+			Renderer::endDraw();
 
 			_window->onUpdate();
 

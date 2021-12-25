@@ -9,18 +9,20 @@ namespace GE {
 	class RendererAPI
 	{
 	public:
-		static enum class Type
+		virtual ~RendererAPI();
+
+		enum class Type
 		{
 			None = 0, OpenGL = 1, Directx = 2
 		};
 
-		static void init(Type apiType);
+		void init(RendererAPI::Type apiType);
 
 		virtual void setBackgroundColor(const glm::vec4& color) = 0;
 		virtual void clear() = 0;
 		virtual void draw(const std::shared_ptr<VertexArr>& vertexArr) = 0;
 
-		inline RendererAPI::Type getType() { return _type; }
+		inline static RendererAPI::Type getType() { return _type; }
 		inline static RendererAPI* get() { return _api; }
 	private:
 		static RendererAPI::Type _type;
@@ -30,6 +32,9 @@ namespace GE {
 	// above "Renderer" function set
 	class RenderInstruction {
 	public:
+		inline static  void init(RendererAPI::Type apiType) { RendererAPI::get()->init(apiType); }
+		inline static void setBackgroundColor(const glm::vec4& color) { RendererAPI::get()->setBackgroundColor(color); }
+		inline static void clear() { RendererAPI::get()->clear(); }
 		inline static void draw(const std::shared_ptr<VertexArr>& vertexArr) { RendererAPI::get()->draw(vertexArr); }
 	};
 }

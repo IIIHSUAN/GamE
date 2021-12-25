@@ -9,39 +9,39 @@ namespace GE {
 
 	VertexBuf * VertexBuf::create(float * vertices, uint32_t count)
 	{
-		switch (Renderer::getAPI())
+		switch (RendererAPI::getType())
 		{
-		case RendererAPI::None:
+		case RendererAPI::Type::None:
 		default:
 			COUT_ASSERT(0, "RendererAPI NULL for VertexBuf");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::Type::OpenGL:
 			return new GLVertexBuf(vertices, count);
 		}
 	}
 
 	IndexBuf * IndexBuf::create(uint32_t * vertices, uint32_t count)
 	{
-		switch (Renderer::getAPI())
+		switch (RendererAPI::getType())
 		{
-		case RendererAPI::None:
+		case RendererAPI::Type::None:
 		default:
 			COUT_ASSERT(0, "RendererAPI NULL for IndexBuf");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::Type::OpenGL:
 			return new GLIndexBuf(vertices, count);
 		}
 	}
 
 	VertexArr * VertexArr::create()
 	{
-		switch (Renderer::getAPI())
+		switch (RendererAPI::getType())
 		{
-		case RendererAPI::None:
+		case RendererAPI::Type::None:
 		default:
 			COUT_ASSERT(0, "RendererAPI NULL for VertexBuf");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::Type::OpenGL:
 			return new GLVertexArr();
 		}
 	}

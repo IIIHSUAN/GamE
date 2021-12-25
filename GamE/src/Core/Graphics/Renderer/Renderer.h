@@ -13,10 +13,6 @@ namespace GE {
 		static void endDraw();
 
 		virtual void flush() = 0;  // multi thread
-
-		inline static RendererAPI::API getAPI() { return _api; }
-	private:
-		static RendererAPI::API _api;
 	};
 
 }

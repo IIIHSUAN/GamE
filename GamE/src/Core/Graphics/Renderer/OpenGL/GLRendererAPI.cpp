@@ -1,7 +1,8 @@
 #include "pch.h"
-#include <glad/glad.h>
 
 #include "GLRendererAPI.h"
+
+#include <glad/glad.h>
 
 namespace GE {
 
