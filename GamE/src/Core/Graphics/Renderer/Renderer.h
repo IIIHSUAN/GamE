@@ -1,18 +1,22 @@
 #pragma once
 
-namespace GE {
+#include "RendererAPI.h"
 
-	enum class RendererAPI
-	{
-		None = 0, OpenGL = 1, Directx = 2
-	};
+namespace GE {
 
 	class Renderer
 	{
 	public:
-		inline static RendererAPI getAPI() { return _API; }
+
+		static void beginDraw();  // set camera, light, env
+		static void submit(const std::shared_ptr<VertexArr>& vertexArr);  // send mesh, vertexArr info
+		static void endDraw();
+
+		virtual void flush() = 0;  // multi thread
+
+		inline static RendererAPI::API getAPI() { return _api; }
 	private:
-		static RendererAPI _API;
+		static RendererAPI::API _api;
 	};
 
 }

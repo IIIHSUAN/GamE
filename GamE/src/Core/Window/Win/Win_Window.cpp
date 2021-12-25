@@ -27,7 +27,7 @@ namespace GE {
 		_winWindowData.title = props.title;
 		_winWindowData.width = props.width;
 		_winWindowData.height = props.height;
-		COUT_YEL("Create Win window \"{0}\" ({1},{2})", props.title, props.width, props.height);
+		COUT_YEL("Create Win window \"{0}\" ({1},{2})\n", props.title, props.width, props.height);
 		
 
 		if (!_isGLFWInit)

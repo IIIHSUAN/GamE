@@ -57,6 +57,7 @@ namespace GE {
 		const uint32_t& count() const { return GE::count(type); }
 	};
 
+	// the properties of Buffer which the renderer needed to know
 	class BufLayout
 	{
 	public:
@@ -114,7 +115,7 @@ namespace GE {
 		static IndexBuf* create(uint32_t* vertices, uint32_t count);
 	};
 
-	/* OpenGL only *************************************/
+	/* Buffer Dealer against Renderer *************************************/
 
 	class VertexArr
 	{

@@ -17,6 +17,8 @@ namespace GE {
 		insert_back(new Layer("Layer0"));
 		insert_front(new Layer("Layer99"));
 
+		/////////////////////////////////////////////
+
 		_vertexArr.reset(VertexArr::create());
 
 		float vertices[] {
@@ -35,7 +37,6 @@ namespace GE {
 			{ DataType::Float3, "pos" },
 			{ DataType::Float4, "color" }
 		});
-
 		_vertexArr->addVertex(_vertexBuf);
 
 		std::shared_ptr<IndexBuf>_indexBuf;
@@ -68,10 +69,56 @@ namespace GE {
 			void main()
 			{
 				_color = vec4(0.5,o_pos*0.8+0.2);
-				_color = o_color;
+				//_color = o_color;
 			}
 		)";
 		_shader.reset(new GLShader(vertexSrc, fragmentSrc));
+
+		/////////////////////////////////////////////
+
+		_vertexArr2.reset(VertexArr::create());
+
+		float vertices2[]{
+			/*   (Float3)pos  */
+			-0.5f, -0.5f, 0.0f,
+			0.5f, 0.5f, 0.0f,
+			-0.5f, 0.5f ,0.0f,
+			0.5f, -0.5f, 0.0f
+		};
+
+		std::shared_ptr<VertexBuf>_vertexBuf2;
+		_vertexBuf2.reset(VertexBuf::create(vertices2, sizeof(vertices2)));
+		_vertexBuf2->setLayout({
+			{ DataType::Float3, "pos" }
+			});
+		_vertexArr2->addVertex(_vertexBuf2);
+
+		std::shared_ptr<IndexBuf>_indexBuf2;
+		unsigned int indices2[]{ 0,1,2,0,1,3 };
+		_indexBuf2.reset(IndexBuf::create(indices2, sizeof(indices2) / sizeof(uint32_t)));
+		_vertexArr2->setIndex(_indexBuf2);
+
+		std::string vertexSrc2 = R"(
+			#version 330 core
+
+			layout(location=0) in vec3 _pos;
+
+			void main()
+			{
+				gl_Position = vec4(_pos, 1.0);
+			}
+		)";
+		std::string fragmentSrc2 = R"(
+			#version 330 core
+
+			layout(location=0) out vec4 _color;
+
+			void main()
+			{
+				_color = vec4(0.6f,0.2f,0.0f,0.5f);
+			}
+		)";
+		_shader2.reset(new GLShader(vertexSrc2, fragmentSrc2));
 	}
 
 	Application::~Application()
@@ -82,17 +129,25 @@ namespace GE {
 	{
 		while (_isRun)
 		{
+			// first
+
 			glClearColor(0.15f, 0.15f, 0.15f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			_shader2->bind();
+			_vertexArr2->bind();
+			glDrawElements(GL_TRIANGLES, _vertexArr2->getIndexBuf()->getCount(), GL_UNSIGNED_INT, nullptr);
 
 			_shader->bind();
 			_vertexArr->bind();
 			glDrawElements(GL_TRIANGLES, _vertexArr->getIndexBuf()->getCount(), GL_UNSIGNED_INT, nullptr);
 
+			_window->onUpdate();
+
 			for (Layer* layer : _layerStack)
 				layer->onUpdate();
 
-			_window->onUpdate();
+			// last
 		}
 	}
 

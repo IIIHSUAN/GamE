@@ -3,6 +3,14 @@
 
 namespace GE {
 
-	RendererAPI Renderer::_API = RendererAPI::OpenGL;
+	void Renderer::beginDraw()
+	{
+	}
+	void Renderer::submit(const std::shared_ptr<VertexArr>& vertexArr)
+	{
+	}
+	void Renderer::endDraw()
+	{
+	}
 
 }

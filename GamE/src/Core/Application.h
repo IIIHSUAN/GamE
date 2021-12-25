@@ -30,8 +30,8 @@ namespace GE {
 		LayerStack _layerStack;
 
 		// can have many
-		std::shared_ptr<Shader> _shader;
-		std::shared_ptr<VertexArr> _vertexArr;
+		std::shared_ptr<Shader> _shader, _shader2;
+		std::shared_ptr<VertexArr> _vertexArr, _vertexArr2;
 		//std::shared_ptr<VertexBuf> _vertexBuf;
 		//std::shared_ptr<IndexBuf> _indexBuf;
 	};
