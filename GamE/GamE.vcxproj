@@ -515,6 +515,7 @@
     <ClInclude Include="src\Core\Events\MouseEvent.h" />
     <ClInclude Include="src\Core\Graphics\Buffer\Buffer.h" />
     <ClInclude Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.h" />
+    <ClInclude Include="src\Core\Graphics\Camera\Camera.h" />
     <ClInclude Include="src\Core\Graphics\Renderer\OpenGL\GLContext.h" />
     <ClInclude Include="src\Core\Graphics\Renderer\OpenGL\GLRendererAPI.h" />
     <ClInclude Include="src\Core\Graphics\Renderer\Renderer.h" />
@@ -535,6 +536,7 @@
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Graphics\Buffer\Buffer.cpp" />
     <ClCompile Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.cpp" />
+    <ClCompile Include="src\Core\Graphics\Camera\Camera.cpp" />
     <ClCompile Include="src\Core\Graphics\Renderer\OpenGL\GLContext.cpp" />
     <ClCompile Include="src\Core\Graphics\Renderer\OpenGL\GLRendererAPI.cpp" />
     <ClCompile Include="src\Core\Graphics\Renderer\Renderer.cpp" />

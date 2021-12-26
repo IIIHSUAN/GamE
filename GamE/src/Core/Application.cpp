@@ -11,7 +11,7 @@ namespace GE {
 
 	Application::Application()
 	{
-		_window = std::unique_ptr<Window>(Window::create());
+		_window = std::unique_ptr<Window>(Window::create({ "App Window",500,500 }));
 		_window->setEventCallback(BIND_FUNC(Application::onEvent));
 
 		insert_back(new Layer("Layer1"));
@@ -54,6 +54,8 @@ namespace GE {
 			#version 330 core
 			layout(location=0) in vec3 _pos;
 			layout(location=1) in vec4 _color;
+
+			uniform mat4 _view_project;
 			
 			out vec3 o_pos;
 			out vec4 o_color;
@@ -62,7 +64,7 @@ namespace GE {
 			{
 				o_pos = _pos;
 				o_color = _color;
-				gl_Position = vec4(_pos, 1.0);
+				gl_Position = _view_project*vec4(_pos, 1.0);
 			}
 		)";
 		std::string fragmentSrc = R"(
@@ -109,9 +111,11 @@ namespace GE {
 
 			layout(location=0) in vec3 _pos;
 
+			uniform mat4 _view_project;
+
 			void main()
 			{
-				gl_Position = vec4(_pos, 1.0);
+				gl_Position = _view_project*vec4(_pos, 1.0);  // == uniform mat4
 			}
 		)";
 		std::string fragmentSrc2 = R"(
@@ -121,7 +125,7 @@ namespace GE {
 
 			void main()
 			{
-				_color = vec4(0.6f,0.2f,0.0f,0.5f);
+				_color = vec4(0.8f,0.3f,0.2f,0.5f);
 			}
 		)";
 		_shader2.reset(new GLShader(vertexSrc2, fragmentSrc2));
@@ -133,6 +137,7 @@ namespace GE {
 
 	void Application::run()
 	{
+		float deg = 0.0f;
 		while (_isRun)
 		{
 			// first
@@ -140,16 +145,15 @@ namespace GE {
 			RenderInstruction::setBackgroundColor({ 0.15f,0.15f,0.15f,1 });
 			RenderInstruction::clear();
 
-			Renderer::beginDraw();
+			_cam.setPosition({ 0.5f, 0.5f, 0.0f });
+			_cam.setRotate(deg++);
 
+			Renderer::beginDraw(_cam);
 			{
-				_shader2->bind();
-				Renderer::submit(_vertexArr2);
+				Renderer::submit(_shader2,_vertexArr2);
 
-				_shader->bind();
-				Renderer::submit(_vertexArr);
+				Renderer::submit(_shader, _vertexArr);
 			}
-
 			Renderer::endDraw();
 
 			_window->onUpdate();

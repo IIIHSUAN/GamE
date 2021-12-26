@@ -17,7 +17,7 @@ namespace GE {
 		unsigned int height;
 
 		WindowProperties(
-			const std::string& _title = "GamEn's Window",
+			const std::string& _title = "Default Window",
 			unsigned int _width = 1280,
 			unsigned int _height = 720
 		) : title(_title), width(_width), height(_height) {}

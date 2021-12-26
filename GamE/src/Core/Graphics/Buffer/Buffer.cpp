@@ -13,7 +13,7 @@ namespace GE {
 		{
 		case RendererAPI::Type::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI NULL for VertexBuf");
+			COUT_ASSERT(0, "RendererAPI Type Not Found for VertexBuf");
 			return nullptr;
 		case RendererAPI::Type::OpenGL:
 			return new GLVertexBuf(vertices, count);
@@ -26,7 +26,7 @@ namespace GE {
 		{
 		case RendererAPI::Type::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI NULL for IndexBuf");
+			COUT_ASSERT(0, "RendererAPI Type Not Found for IndexBuf");
 			return nullptr;
 		case RendererAPI::Type::OpenGL:
 			return new GLIndexBuf(vertices, count);
@@ -39,7 +39,7 @@ namespace GE {
 		{
 		case RendererAPI::Type::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI NULL for VertexBuf");
+			COUT_ASSERT(0, "RendererAPI Type Not Found for VertexBuf");
 			return nullptr;
 		case RendererAPI::Type::OpenGL:
 			return new GLVertexArr();

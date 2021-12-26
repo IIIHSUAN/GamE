@@ -6,6 +6,7 @@
 
 #include "Core/Graphics/Shader/OpenGL/GLShader.h"
 #include "Core/Graphics/Buffer/Buffer.h"
+#include "Core/Graphics/Camera/Camera.h"
 
 namespace GE {
 
@@ -34,6 +35,8 @@ namespace GE {
 		std::shared_ptr<VertexArr> _vertexArr, _vertexArr2;
 		//std::shared_ptr<VertexBuf> _vertexBuf;
 		//std::shared_ptr<IndexBuf> _indexBuf;
+
+		OrthCamera _cam = OrthCamera(-1.0f,1.0f,-1.0f,1.0f);
 	};
 
 	// define by client & return new Application()

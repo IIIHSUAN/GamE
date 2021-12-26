@@ -2,6 +2,7 @@
 #include "GLShader.h"
 
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace GE {
 
@@ -69,29 +70,29 @@ namespace GE {
 		// Vertex and fragment shaders are successfully compiled.
 		// Now time to link them together into a program.
 		// Get a program object.
-		_renderer = glCreateProgram();
+		_shader = glCreateProgram();
 
 		// Attach our shaders to our program
-		glAttachShader(_renderer, vertexShader);
-		glAttachShader(_renderer, fragmentShader);
+		glAttachShader(_shader, vertexShader);
+		glAttachShader(_shader, fragmentShader);
 
 		// Link our program
-		glLinkProgram(_renderer);
+		glLinkProgram(_shader);
 
 		// Note the different functions here: glGetProgram* instead of glGetShader*.
 		GLint isLinked = 0;
-		glGetProgramiv(_renderer, GL_LINK_STATUS, (int *)&isLinked);
+		glGetProgramiv(_shader, GL_LINK_STATUS, (int *)&isLinked);
 		if (isLinked == GL_FALSE)
 		{
 			GLint maxLength = 0;
-			glGetProgramiv(_renderer, GL_INFO_LOG_LENGTH, &maxLength);
+			glGetProgramiv(_shader, GL_INFO_LOG_LENGTH, &maxLength);
 
 			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(_renderer, maxLength, &maxLength, &infoLog[0]);
+			glGetProgramInfoLog(_shader, maxLength, &maxLength, &infoLog[0]);
 
 			// We don't need the program anymore.
-			glDeleteProgram(_renderer);
+			glDeleteProgram(_shader);
 			// Don't leak shaders either.
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);
@@ -101,18 +102,23 @@ namespace GE {
 		}
 
 		// Always detach shaders after a successful link.
-		glDetachShader(_renderer, vertexShader);
-		glDetachShader(_renderer, fragmentShader);
+		glDetachShader(_shader, vertexShader);
+		glDetachShader(_shader, fragmentShader);
 
 	}
 	GLShader::~GLShader()
 	{
-		glDeleteProgram(_renderer);
+		glDeleteProgram(_shader);
 	}
 	void GLShader::bind() const
 	{
-		glUseProgram(_renderer);
+		glUseProgram(_shader);
 
 		// unbind -> glUseProgram(NULL);
+	}
+	void GLShader::uploadUniMat4(const std::string& var_name, const glm::mat4 & mat)  // make sure bind() before using
+	{
+		GLint var = glGetUniformLocation(_shader, var_name.c_str());
+		glUniformMatrix4fv(var, 1, GL_FALSE, glm::value_ptr(mat));
 	}
 }
