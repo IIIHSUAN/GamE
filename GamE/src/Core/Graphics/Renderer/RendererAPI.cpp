@@ -5,7 +5,7 @@
 
 namespace GE {
 
-	RendererAPI::Type RendererAPI::_type = RendererAPI::Type::None;
+	RendererAPI::Name RendererAPI::_name = RendererAPI::Name::None;
 	RendererAPI* RendererAPI::_api = nullptr;
 
 	RendererAPI::~RendererAPI()
@@ -13,22 +13,22 @@ namespace GE {
 		if (_api != nullptr)
 			delete _api;
 	}
-	void RendererAPI::init(RendererAPI::Type apiType)
+	void RendererAPI::init(RendererAPI::Name apiName)
 	{
-		_type = apiType;
+		_name = apiName;
 
-		switch (apiType)
+		switch (apiName)
 		{
-		case RendererAPI::Type::OpenGL:
+		case RendererAPI::Name::OpenGL:
 			_api = new GLRendererAPI();
 			break;
-		case RendererAPI::Type::Directx:
+		case RendererAPI::Name::Directx:
 			COUT_ASSERT(0, "[RendererAPI] NO Directx API");
 			_api = nullptr;
 			break;
-		case RendererAPI::Type::None:
+		case RendererAPI::Name::None:
 		default:
-			COUT_ASSERT(0, "[RendererAPI] NO API Type");
+			COUT_ASSERT(0, "[RendererAPI] API Name None");
 			_api = nullptr;
 			break;
 		}

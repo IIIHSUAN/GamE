@@ -9,39 +9,39 @@ namespace GE {
 
 	VertexBuf * VertexBuf::create(float * vertices, uint32_t count)
 	{
-		switch (RendererAPI::getType())
+		switch (RendererAPI::getName())
 		{
-		case RendererAPI::Type::None:
+		case RendererAPI::Name::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI Type Not Found for VertexBuf");
+			COUT_ASSERT(0, "RendererAPI Name Not Found for VertexBuf");
 			return nullptr;
-		case RendererAPI::Type::OpenGL:
+		case RendererAPI::Name::OpenGL:
 			return new GLVertexBuf(vertices, count);
 		}
 	}
 
 	IndexBuf * IndexBuf::create(uint32_t * vertices, uint32_t count)
 	{
-		switch (RendererAPI::getType())
+		switch (RendererAPI::getName())
 		{
-		case RendererAPI::Type::None:
+		case RendererAPI::Name::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI Type Not Found for IndexBuf");
+			COUT_ASSERT(0, "RendererAPI Name Not Found for IndexBuf");
 			return nullptr;
-		case RendererAPI::Type::OpenGL:
+		case RendererAPI::Name::OpenGL:
 			return new GLIndexBuf(vertices, count);
 		}
 	}
 
 	VertexArr * VertexArr::create()
 	{
-		switch (RendererAPI::getType())
+		switch (RendererAPI::getName())
 		{
-		case RendererAPI::Type::None:
+		case RendererAPI::Name::None:
 		default:
-			COUT_ASSERT(0, "RendererAPI Type Not Found for VertexBuf");
+			COUT_ASSERT(0, "RendererAPI Name Not Found for VertexBuf");
 			return nullptr;
-		case RendererAPI::Type::OpenGL:
+		case RendererAPI::Name::OpenGL:
 			return new GLVertexArr();
 		}
 	}

@@ -7,13 +7,14 @@
 #include "Core/Graphics/Shader/OpenGL/GLShader.h"
 #include "Core/Graphics/Buffer/Buffer.h"
 #include "Core/Graphics/Camera/Camera.h"
+#include "Core/Graphics/Renderer/Renderer.h"
 
 namespace GE {
 
 	class Application
 	{
 	public:
-		Application();
+		Application(const WindowProperties& prop, RendererAPI::Name rendererName);
 		virtual ~Application();
 
 		void run();
@@ -22,7 +23,12 @@ namespace GE {
 		void insert_front(Layer* layer);
 		void insert_back(Layer* layer);
 
+		inline static Application& get() { return *_application; }
+		inline Window& getWindow() { return *_window; };
+
 	private:
+		static Application* _application;
+
 		bool onWindowClose(WindowCloseEvent& e);
 		bool onWindowResize(WindowResizeEvent& e);
 
@@ -30,13 +36,11 @@ namespace GE {
 		bool _isRun = true;
 		LayerStack _layerStack;
 
-		// can have many
-		std::shared_ptr<Shader> _shader, _shader2;
-		std::shared_ptr<VertexArr> _vertexArr, _vertexArr2;
-		//std::shared_ptr<VertexBuf> _vertexBuf;
-		//std::shared_ptr<IndexBuf> _indexBuf;
+		// can have many _shader/_vertexArr
+		//std::shared_ptr<Shader> _shader, _shader2;
+		//std::shared_ptr<VertexArr> _vertexArr, _vertexArr2;  --vertexBuf, indexBuf
 
-		OrthCamera _cam = OrthCamera(-1.0f,1.0f,-1.0f,1.0f);
+		//OrthCamera _cam = OrthCamera(-1.0f,1.0f,-1.0f,1.0f);
 	};
 
 	// define by client & return new Application()

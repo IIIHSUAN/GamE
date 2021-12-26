@@ -511,6 +511,7 @@
     <ClInclude Include="src\Core\EntryPoint.h" />
     <ClInclude Include="src\Core\Events\AppEvent.h" />
     <ClInclude Include="src\Core\Events\Event.h" />
+    <ClInclude Include="src\Core\Window\Input.h" />
     <ClInclude Include="src\Core\Events\KeyEvent.h" />
     <ClInclude Include="src\Core\Events\MouseEvent.h" />
     <ClInclude Include="src\Core\Graphics\Buffer\Buffer.h" />
@@ -526,6 +527,7 @@
     <ClInclude Include="src\Core\Layers\Layer.h" />
     <ClInclude Include="src\Core\Layers\LayerStack.h" />
     <ClInclude Include="src\Core\Window\Lin\Lin_Window.h" />
+    <ClInclude Include="src\Core\Window\Win\Win_Input.h" />
     <ClInclude Include="src\Core\Window\Win\Win_Window.h" />
     <ClInclude Include="src\Core\Window\Window.h" />
     <ClInclude Include="src\GamE.h" />
@@ -545,6 +547,7 @@
     <ClCompile Include="src\Core\Layers\Layer.cpp" />
     <ClCompile Include="src\Core\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Core\Window\Lin\Lin_WIndow.cpp" />
+    <ClCompile Include="src\Core\Window\Win\Win_Input.cpp" />
     <ClCompile Include="src\Core\Window\Win\Win_Window.cpp" />
     <ClCompile Include="src\Core\Window\Window.cpp" />
     <ClCompile Include="src\Log\Log.cpp" />

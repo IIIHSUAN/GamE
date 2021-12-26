@@ -16,8 +16,8 @@ namespace GE {
 	public:
 		OrthCamera(float left, float right, float bottom, float top);
 		
-		const glm::vec3 getPosition() const { return _position; }
-		const float getRotationDeg() const { return _rotationDeg; }
+		const glm::vec3& getPosition() const { return _position; }
+		const float& getRotationDeg() const { return _rotationDeg; }
 
 		void setPosition(const glm::vec3& pos) { _position = pos; updateCamMatrix(); }
 		void setRotate(float rotation) { _rotationDeg = rotation; updateCamMatrix(); }

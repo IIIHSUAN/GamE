@@ -40,6 +40,9 @@
     <Filter Include="src\Core\Graphics\Buffer\OpenGL">
       <UniqueIdentifier>{42154FA3-AEF8-5DE3-B7FB-8B1F235E2434}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\Graphics\Camera">
+      <UniqueIdentifier>{5D127DF2-4937-CC72-7282-B1025E06CB90}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Core\Graphics\Renderer">
       <UniqueIdentifier>{CBCE0B94-B7DE-B764-2098-1C830CC7A6FD}</UniqueIdentifier>
     </Filter>
@@ -1338,6 +1341,9 @@
     <ClInclude Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.h">
       <Filter>src\Core\Graphics\Buffer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\Graphics\Camera\Camera.h">
+      <Filter>src\Core\Graphics\Camera</Filter>
+    </ClInclude>
     <ClInclude Include="src\Core\Graphics\Renderer\OpenGL\GLContext.h">
       <Filter>src\Core\Graphics\Renderer\OpenGL</Filter>
     </ClInclude>
@@ -1383,7 +1389,8 @@
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Graphics\Camera\Camera.h" />
+    <ClInclude Include="src\Core\Window\Win\Win_Input.h" />
+    <ClInclude Include="src\Core\Window\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -1394,6 +1401,9 @@
     </ClCompile>
     <ClCompile Include="src\Core\Graphics\Buffer\OpenGL\GLBuffer.cpp">
       <Filter>src\Core\Graphics\Buffer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Graphics\Camera\Camera.cpp">
+      <Filter>src\Core\Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Graphics\Renderer\OpenGL\GLContext.cpp">
       <Filter>src\Core\Graphics\Renderer\OpenGL</Filter>
@@ -1431,6 +1441,6 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Graphics\Camera\Camera.cpp" />
+    <ClCompile Include="src\Core\Window\Win\Win_Input.cpp" />
   </ItemGroup>
 </Project>

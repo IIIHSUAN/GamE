@@ -21,7 +21,7 @@ namespace GE {
 		void setVSync(bool isEnable) override;
 		bool isVSync() const override;
 
-		virtual void* GetNativeWindow() const { return _gLFWwindow; }
+		virtual void* getProtoWindow() const override { return _gLFWwindow; }
 	private:
 		virtual void init(const WindowProperties& props);
 		virtual void shutdown();

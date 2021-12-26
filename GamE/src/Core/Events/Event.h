@@ -4,6 +4,7 @@
 #include <sstream>
 
 #define BIT(x) (1<<x)
+#define BIND_FUNC(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace GE {
 

@@ -1,134 +1,26 @@
 #include "pch.h"
 #include "Application.h"
 
-#include <glad/glad.h>
-
-#include "Core/Graphics/Renderer/Renderer.h"
-
-#define BIND_FUNC(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace GE {
 
-	Application::Application()
+	Application* Application::_application = nullptr;
+
+	Application::Application(const WindowProperties& prop = { "App Window", 500, 500 }, RendererAPI::Name rendererName = RendererAPI::Name::None)
 	{
-		_window = std::unique_ptr<Window>(Window::create({ "App Window",500,500 }));
+		if (_application != nullptr)
+			COUT_ASSERT(0, "only one Application can run");
+		_application = this;
+
+		_window = std::unique_ptr<Window>(Window::create(prop));
 		_window->setEventCallback(BIND_FUNC(Application::onEvent));
+
+		RenderInstruction::init(rendererName);
 
 		insert_back(new Layer("Layer1"));
 		insert_front(new Layer("Layer100"));
 		insert_back(new Layer("Layer0"));
 		insert_front(new Layer("Layer99"));
-
-		/////////////////////////////////////////////
-
-		RenderInstruction::init(RendererAPI::Type::OpenGL);
-
-		/////////////////////////////////////////////
-		
-		_vertexArr.reset(VertexArr::create());
-
-		float vertices[] {
-			/*   (Float3)pos          (Float4)color   */ 
-			-0.1f, -0.1f, 0.0f,		0.8f,0.1f,0.6f,1.0f,
-			0.0f, 0.0f, 0.0f,		0.8f,0.4f,0.3f,1.0f,
-			-0.1f, 0.1f ,0.0f,		0.9f,0.4f,0.5f,1.0f,
-			0.1f, -0.1f, 0.0f,		0.8f,0.1f,0.6f,1.0f,
-			0.5f, 0.1f, 0.0f,		0.8f,0.4f,0.3f,1.0f,
-			-0.5f, 0.1f ,0.9f,		0.9f,0.4f,0.5f,1.0f
-		};
-
-		std::shared_ptr<VertexBuf>_vertexBuf;
-		_vertexBuf.reset(VertexBuf::create(vertices, sizeof(vertices)));
-		_vertexBuf->setLayout({
-			{ DataType::Float3, "pos" },
-			{ DataType::Float4, "color" }
-		});
-		_vertexArr->addVertex(_vertexBuf);
-
-		std::shared_ptr<IndexBuf>_indexBuf;
-		unsigned int indices[]{ 1,2,0,1,5,0 };
-		_indexBuf.reset(IndexBuf::create(indices, sizeof(indices)/sizeof(uint32_t)));
-		_vertexArr->setIndex(_indexBuf);
-
-		std::string vertexSrc =	R"(
-			#version 330 core
-			layout(location=0) in vec3 _pos;
-			layout(location=1) in vec4 _color;
-
-			uniform mat4 _view_project;
-			
-			out vec3 o_pos;
-			out vec4 o_color;
-
-			void main()
-			{
-				o_pos = _pos;
-				o_color = _color;
-				gl_Position = _view_project*vec4(_pos, 1.0);
-			}
-		)";
-		std::string fragmentSrc = R"(
-			#version 330 core
-			layout(location=0) out vec4 _color;
-
-			in vec3 o_pos;
-			in vec4 o_color;
-
-			void main()
-			{
-				_color = vec4(0.5,o_pos*0.8+0.2);
-				//_color = o_color;
-			}
-		)";
-		_shader.reset(new GLShader(vertexSrc, fragmentSrc));
-
-		/////////////////////////////////////////////
-
-		_vertexArr2.reset(VertexArr::create());
-
-		float vertices2[]{
-			/*   (Float3)pos  */
-			-0.5f, -0.5f, 0.0f,
-			0.5f, 0.5f, 0.0f,
-			-0.5f, 0.5f ,0.0f,
-			0.5f, -0.5f, 0.0f
-		};
-
-		std::shared_ptr<VertexBuf>_vertexBuf2;
-		_vertexBuf2.reset(VertexBuf::create(vertices2, sizeof(vertices2)));
-		_vertexBuf2->setLayout({
-			{ DataType::Float3, "pos" }
-			});
-		_vertexArr2->addVertex(_vertexBuf2);
-
-		std::shared_ptr<IndexBuf>_indexBuf2;
-		unsigned int indices2[]{ 0,1,2,0,1,3 };
-		_indexBuf2.reset(IndexBuf::create(indices2, sizeof(indices2) / sizeof(uint32_t)));
-		_vertexArr2->setIndex(_indexBuf2);
-
-		std::string vertexSrc2 = R"(
-			#version 330 core
-
-			layout(location=0) in vec3 _pos;
-
-			uniform mat4 _view_project;
-
-			void main()
-			{
-				gl_Position = _view_project*vec4(_pos, 1.0);  // == uniform mat4
-			}
-		)";
-		std::string fragmentSrc2 = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 _color;
-
-			void main()
-			{
-				_color = vec4(0.8f,0.3f,0.2f,0.5f);
-			}
-		)";
-		_shader2.reset(new GLShader(vertexSrc2, fragmentSrc2));
 	}
 
 	Application::~Application()
@@ -137,24 +29,9 @@ namespace GE {
 
 	void Application::run()
 	{
-		float deg = 0.0f;
 		while (_isRun)
 		{
 			// first
-
-			RenderInstruction::setBackgroundColor({ 0.15f,0.15f,0.15f,1 });
-			RenderInstruction::clear();
-
-			_cam.setPosition({ 0.5f, 0.5f, 0.0f });
-			_cam.setRotate(deg++);
-
-			Renderer::beginDraw(_cam);
-			{
-				Renderer::submit(_shader2,_vertexArr2);
-
-				Renderer::submit(_shader, _vertexArr);
-			}
-			Renderer::endDraw();
 
 			_window->onUpdate();
 
