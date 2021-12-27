@@ -15,7 +15,8 @@ namespace GE {
 
 	void OrthCamera::updateCamMatrix()
 	{
-		glm::mat4 transform = glm::rotate(  glm::translate(glm::mat4(1.0f), _position)  , glm::radians(_rotationDeg), glm::vec3(0, 0, 1));
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), _position);
+		transform = glm::rotate(transform, glm::radians(_rotationDeg), glm::vec3(0, 0, 1));
 
 		_camMat.view = glm::inverse(transform);
 		_camMat.view_project = _camMat.project * _camMat.view;

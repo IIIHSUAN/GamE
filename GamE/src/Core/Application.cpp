@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 
+#include "Window/Time.h"
 
 namespace GE {
 
@@ -29,14 +30,18 @@ namespace GE {
 
 	void Application::run()
 	{
+		float start_second = 0.0f, last_second = 0.0f, delta_second = 0.0f;
 		while (_isRun)
 		{
 			// first
+			start_second = Time::getSeconds();
+			delta_second = start_second - last_second;
+			last_second = start_second;
 
 			_window->onUpdate();
 
 			for (Layer* layer : _layerStack)
-				layer->onUpdate();
+				layer->onUpdate(delta_second);
 
 			// last
 		}

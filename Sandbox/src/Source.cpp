@@ -113,20 +113,21 @@ namespace Sandbox {
 			_shader2.reset(new GE::GLShader(vertexSrc2, fragmentSrc2));
 		}
 
-		virtual void onUpdate() override
+		virtual void onUpdate(const float& delta_second) override
 		{
+			_actual_velocity = _velocity * delta_second, _actual_omega = _omega * delta_second;
 			if(GE::Input::isKeyPressed(GE::Key::A))
-				_camPos.x -= _velocity;
+				_camPos.x -= _actual_velocity;
 			if (GE::Input::isKeyPressed(GE::Key::D))
-				_camPos.x += _velocity;
+				_camPos.x += _actual_velocity;
 			if (GE::Input::isKeyPressed(GE::Key::S))
-				_camPos.y -= _velocity;
+				_camPos.y -= _actual_velocity;
 			if (GE::Input::isKeyPressed(GE::Key::W))
-				_camPos.y += _velocity;
+				_camPos.y += _actual_velocity;
 			if (GE::Input::isKeyPressed(GE::Key::Q))
-				_rotationDeg -= _omega;
+				_rotationDeg -= _actual_omega;
 			if (GE::Input::isKeyPressed(GE::Key::E))
-				_rotationDeg += _omega;
+				_rotationDeg += _actual_omega;
 
 			GE::RenderInstruction::setBackgroundColor({ 0.15f,0.15f,0.15f,1 });
 			GE::RenderInstruction::clear();
@@ -160,10 +161,10 @@ namespace Sandbox {
 		std::shared_ptr<GE::Shader> _shader, _shader2;
 		std::shared_ptr<GE::VertexArr> _vertexArr, _vertexArr2;
 		GE::OrthCamera _cam;
-		glm::vec3 _camPos{ 0.5f, 0.5f, 0.0f };
-		float _velocity = .01f;
+		glm::vec3 _camPos{ 0.0f, 0.0f, 0.0f };
+		float _velocity = 1.0f, _actual_velocity = 0.0f;
 
-		float _omega = .5f;
+		float _omega = 2.0f, _actual_omega = 0.0f;
 		float _rotationDeg = 0.0f;
 	};
 

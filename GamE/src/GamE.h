@@ -6,6 +6,7 @@
 
 #include "Core/Window/Window.h"
 #include "Core/Window/Input.h"
+#include "Core/Window/Time.h"
 #include "Core/Events/Event.h"
 #include "Core/Layers/LayerStack.h"
 

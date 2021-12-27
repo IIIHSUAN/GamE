@@ -7,6 +7,8 @@
 
 namespace GE {
 
+	Input* Input::_input = new Win_Input();
+
 	bool Win_Input::isKeyPressed_impl(int keyCode)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::get().getWindow().getProtoWindow());

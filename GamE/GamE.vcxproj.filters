@@ -1391,6 +1391,8 @@
     </ClInclude>
     <ClInclude Include="src\Core\Window\Win\Win_Input.h" />
     <ClInclude Include="src\Core\Window\Input.h" />
+    <ClInclude Include="src\Core\Window\Time.h" />
+    <ClInclude Include="src\Core\Window\Win\Win_Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -1442,5 +1444,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Window\Win\Win_Input.cpp" />
+    <ClCompile Include="src\Core\Window\Win\Win_Time.cpp" />
   </ItemGroup>
 </Project>

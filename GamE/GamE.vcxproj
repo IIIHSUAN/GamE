@@ -527,7 +527,9 @@
     <ClInclude Include="src\Core\Layers\Layer.h" />
     <ClInclude Include="src\Core\Layers\LayerStack.h" />
     <ClInclude Include="src\Core\Window\Lin\Lin_Window.h" />
+    <ClInclude Include="src\Core\Window\Time.h" />
     <ClInclude Include="src\Core\Window\Win\Win_Input.h" />
+    <ClInclude Include="src\Core\Window\Win\Win_Time.h" />
     <ClInclude Include="src\Core\Window\Win\Win_Window.h" />
     <ClInclude Include="src\Core\Window\Window.h" />
     <ClInclude Include="src\GamE.h" />
@@ -548,6 +550,7 @@
     <ClCompile Include="src\Core\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Core\Window\Lin\Lin_WIndow.cpp" />
     <ClCompile Include="src\Core\Window\Win\Win_Input.cpp" />
+    <ClCompile Include="src\Core\Window\Win\Win_Time.cpp" />
     <ClCompile Include="src\Core\Window\Win\Win_Window.cpp" />
     <ClCompile Include="src\Core\Window\Window.cpp" />
     <ClCompile Include="src\Log\Log.cpp" />
